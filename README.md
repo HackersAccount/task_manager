@@ -141,7 +141,7 @@ To use the task manager project, follow these steps:
 
 ## Contributing
 
-Contributions to the task manager project are welcome! Follow the guidelines outlined in the CONTRIBUTING.md file to contribute code, report bugs, or suggest features.
+Contributions to the task manager project are welcome! Follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file to contribute code, report bugs, or suggest features.
 
 ## License
 
