@@ -105,6 +105,12 @@ class Task(models.Model):
 
 
 
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+
+
 class Sprint(models.Model):
     """
     Represents a sprint in the project management system.
@@ -131,3 +137,45 @@ class Sprint(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def duration(self):
+        """
+        Calculates the duration of the sprint in days.
+
+        Returns:
+            int: Duration of the sprint in days.
+        """
+        return (self.end_date - self.start_date).days
+
+    @property
+    def total_tasks(self):
+        """
+        Calculates the total number of tasks associated with the sprint.
+
+        Returns:
+            int: Total number of tasks associated with the sprint.
+        """
+        return self.tasks.count()
+
+    @property
+    def completed_tasks(self):
+        """
+        Calculates the number of completed tasks associated with the sprint.
+
+        Returns:
+            int: Number of completed tasks associated with the sprint.
+        """
+        return self.tasks.filter(status='DONE').count()
+
+    @property
+    def completion_percentage(self):
+        """
+        Calculates the completion percentage of the sprint based on completed tasks.
+
+        Returns:
+            float: Completion percentage of the sprint.
+        """
+        if self.total_tasks == 0:
+            return 0.0
+        return (self.completed_tasks / self.total_tasks) * 100
