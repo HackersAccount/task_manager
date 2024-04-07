@@ -44,7 +44,7 @@ Follow these steps to install and set up the task manager project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/project_name.git
+   git clone https://github.com/HackersAccount/task_manager.git
    ```
 
 2. Navigate to the project directory:
