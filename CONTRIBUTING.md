@@ -2,11 +2,11 @@
 
 # Contributing to [Project Name]
 
-Welcome to [task_manager]! We appreciate your interest in contributing to our project. By participating in this project, you agree to abide by the [code of conduct](CODE_OF_CONDUCT.md).
+Welcome to [task_manager](https://github.com/HackersAccount/task_manager.git)! We appreciate your interest in contributing to our project. By participating in this project, you agree to abide by the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## How to Contribute
 
-To contribute to [task_manager], please follow these steps:
+To contribute to [task_manager](https://github.com/HackersAccount/task_manager.git), please follow these steps:
 
 1. Fork the repository and create your branch from `main`.
 2. Clone the forked repository to your local machine.
@@ -31,7 +31,7 @@ Please review and adhere to our [code of conduct](CODE_OF_CONDUCT.md) to ensure 
 
 ## License
 
-By contributing to [task_manager], you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
+By contributing to [task_manager](https://github.com/HackersAccount/task_manager.git), you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
 
 Thank you for your contributions!
 ---
