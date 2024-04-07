@@ -37,9 +37,7 @@ To set up and run the task manager project, ensure you have the following prereq
 - Other dependencies as specified in the project requirements
 
 
-
 ## Installation
-
 Follow these steps to install and set up the task manager project locally:
 
 1. Clone the repository:
@@ -49,56 +47,38 @@ Follow these steps to install and set up the task manager project locally:
 
 2. Navigate to the project directory:
    ```bash
-   cd project_name
+   cd task_manager
    ```
 
-3. Create a virtual environment:
-   ```bash
-   python3 -m venv env
-   ```
-
-4. Activate the virtual environment:
-   - On macOS and Linux:
-     ```bash
-     source env/bin/activate
-     ```
-   - On Windows (cmd):
-     ```bash
-     env\Scripts\activate
-     ```
-
-5. Install dependencies using Poetry:
+3. Install dependencies using Poetry:
    ```bash
    poetry install
    ```
 
-6. Navigate to the `taskmanager` directory where `manage.py` is located:
+4. Navigate to the `taskmanager` directory where `manage.py` is located:
    ```bash
    cd taskmanager
    ```
 
-7. Run migrations:
+5. Run migrations:
    ```bash
    python manage.py migrate
    ```
 
-8. Create a superuser:
+6. Create a superuser:
    ```bash
    python manage.py createsuperuser
    ```
 
-9. Run the development server:
+7. Run the development server:
    ```bash
    python manage.py runserver
    ```
 
-10. Access the admin interface:
+8. Access the admin interface:
     ```
     http://127.0.0.1:8000/admin/
     ```
-
-
-This Markdown format maintains the structure and formatting of the original text while making it suitable for use in Markdown documents or README files.
 
 ## Configuration
 
