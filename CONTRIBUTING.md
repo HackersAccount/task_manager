@@ -1,6 +1,6 @@
 ---
 
-# Contributing to [Project Name]
+# Contributing to [Task Manager in Django](https://github.com/HackersAccount/task_manager.git)
 
 Welcome to [task_manager](https://github.com/HackersAccount/task_manager.git)! We appreciate your interest in contributing to our project. By participating in this project, you agree to abide by the [code of conduct](CODE_OF_CONDUCT.md).
 
