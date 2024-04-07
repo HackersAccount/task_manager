@@ -1,5 +1,6 @@
 from django.contrib import admin
-from tasks.models import Task  
+from tasks.models import Epic, Task  
+from django.http import HttpRequest
 
 class TaskAdmin(admin.ModelAdmin):
     # Customize the display of tasks in the admin list
@@ -27,6 +28,92 @@ class TaskAdmin(admin.ModelAdmin):
     # Set a short description for the custom action in the admin interface
     mark_archived.short_description = 'Mark selected tasks as archived'
 
+    def has_change_permission(self, request: HttpRequest, obj=None) -> bool:
+        """
+        Check if the user has permission to change tasks.
+
+        Args:
+            request: The HTTP request object.
+            obj: The object being changed.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.change_task')
+
+    def has_add_permission(self, request: HttpRequest) -> bool:
+        """
+        Check if the user has permission to add tasks.
+
+        Args:
+            request: The HTTP request object.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.add_task')
+
+    def has_delete_permission(self, request: HttpRequest, obj=None) -> bool:
+        """
+        Check if the user has permission to delete tasks.
+
+        Args:
+            request: The HTTP request object.
+            obj: The object being deleted.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.delete_task')
+
+class EpicAdmin(admin.ModelAdmin):
+    # Customize the display of epics in the admin list
+    list_display = ("name", "description", "creator", "completion_status", "created_at", "updated_at")
+    # Add filter options for epic creator and completion status
+    list_filter = ("creator", "completion_status")
+    # Enable search functionality for epic name and creator
+    search_fields = ("name", "creator__username") 
+
+    def has_change_permission(self, request: HttpRequest, obj=None) -> bool:
+        """
+        Check if the user has permission to change epics.
+
+        Args:
+            request: The HTTP request object.
+            obj: The object being changed.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.change_epic')
+
+    def has_add_permission(self, request: HttpRequest) -> bool:
+        """
+        Check if the user has permission to add epics.
+
+        Args:
+            request: The HTTP request object.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.add_epic')
+
+    def has_delete_permission(self, request: HttpRequest, obj=None) -> bool:
+        """
+        Check if the user has permission to delete epics.
+
+        Args:
+            request: The HTTP request object.
+            obj: The object being deleted.
+
+        Returns:
+            bool: True if the user has permission, False otherwise.
+        """
+        return request.user.has_perm('tasks.delete_epic')
+    
+# Register the EpicAdmin with the Epic model
+admin.site.register(Epic, EpicAdmin)
 # Register the TaskAdmin with the Task model
 admin.site.register(Task, TaskAdmin)
 
