@@ -36,6 +36,8 @@ To set up and run the task manager project, ensure you have the following prereq
 - PostgreSQL >= 12.0
 - Other dependencies as specified in the project requirements
 
+
+
 ## Installation
 
 Follow these steps to install and set up the task manager project locally:
@@ -65,10 +67,38 @@ Follow these steps to install and set up the task manager project locally:
      env\Scripts\activate
      ```
 
-5. Install dependencies:
+5. Install dependencies using Poetry:
    ```bash
-   pip install -r requirements.txt
+   poetry install
    ```
+
+6. Navigate to the `taskmanager` directory where `manage.py` is located:
+   ```bash
+   cd taskmanager
+   ```
+
+7. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
+8. Create a superuser:
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+9. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+10. Access the admin interface:
+    ```
+    http://127.0.0.1:8000/admin/
+    ```
+
+
+This Markdown format maintains the structure and formatting of the original text while making it suitable for use in Markdown documents or README files.
 
 ## Configuration
 
