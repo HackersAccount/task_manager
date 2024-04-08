@@ -352,3 +352,5 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python,pycharm+all
+taskmanager/tasks/static/.DS_Store
+taskmanager/tasks/static/images/.DS_Store
