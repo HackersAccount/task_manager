@@ -1,6 +1,7 @@
 from django.http import HttpResponseBadRequest
 
 from tasks.services import can_add_task_to_sprint
+from django.db import models
 
 
 class SprintTaskMixin:
@@ -24,3 +25,4 @@ class SprintTaskMixin:
                     )
 
         return super().dispatch(request, *args, **kwargs)
+    

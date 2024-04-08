@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+class VersionMixing:
+    version = models.IntegerField(default=0)
 
 class Epic(models.Model):
     """
@@ -67,7 +69,7 @@ class Epic(models.Model):
         return (self.completed_tasks_count / self.tasks_count) * 100
 
 
-class Task(models.Model):
+class Task(VersionMixing, models.Model):
     """
     Represents a task in the system.
     """
@@ -102,6 +104,9 @@ class Task(models.Model):
         blank=True, 
         verbose_name=_("Owner")
     )
+    version = models.IntegerField(default=0)
+    file_upload = models.FileField(upload_to="tasks/files/", null=True, blank=True)
+    image_upload = models.ImageField(upload_to="tasks/images/", null=True, blank=True)
 
 
     class Meta:
@@ -207,3 +212,12 @@ class Sprint(models.Model):
         if self.total_tasks == 0:
             return 0.0
         return (self.completed_tasks / self.total_tasks) * 100
+
+
+class Email(models.Model):
+    email = models.EmailField()
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="watchers")
+
+
+class FormSubmission(models.Model):
+    uuid = models.UUIDField(unique=True)

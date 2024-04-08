@@ -84,7 +84,7 @@ class Command(BaseCommand):
             description: str = f'Description of Task {_ + 1}'
             status: str = random.choice(DEFAULT_TASK_STATUSES)
             Task.objects.create(title=title, description=description, status=status, creator=creator, owner=owner)
-        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_tasks, 0)} tasks'))
+        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_tasks, _)} tasks'))
 
     def create_epics(self, num_epics: int) -> None:
         """
@@ -105,7 +105,7 @@ class Command(BaseCommand):
             description: str = f'Description of Epic {_ + 1}'
             completion_status: float = round(random.uniform(0.0, 100.0), 2)
             Epic.objects.create(name=name, description=description, completion_status=completion_status, creator=creator)
-        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_epics, 0)} epics'))
+        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_epics, _)} epics'))
 
     def create_sprints(self, num_sprints: int) -> None:
         """
@@ -127,7 +127,7 @@ class Command(BaseCommand):
             start_date: timezone.datetime = timezone.now().date()  # Adjust as needed
             end_date: timezone.datetime = start_date + timezone.timedelta(days=random.randint(7, 14))  # Adjust as needed
             Sprint.objects.create(name=name, description=description, start_date=start_date, end_date=end_date, creator=creator)
-        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_sprints, 0)} sprints'))
+        self.stdout.write(self.style.SUCCESS(f'Successfully created {min(num_sprints, _)} sprints'))
 
     def _generate_username(self, size: int = USERNAME_LENGTH) -> str:
         """
