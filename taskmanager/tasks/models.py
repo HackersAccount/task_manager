@@ -80,11 +80,29 @@ class Task(models.Model):
 
     title = models.CharField(max_length=200, verbose_name=_("Title"))
     description = models.TextField(blank=True, verbose_name=_("Description"))
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="UNASSIGNED", verbose_name=_("Status"))
+    status = models.CharField(
+        max_length=20, 
+        choices=STATUS_CHOICES, 
+        default="UNASSIGNED", 
+        verbose_name=_("Status")
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
-    creator = models.ForeignKey(User, related_name="created_tasks", on_delete=models.CASCADE, verbose_name=_("Creator"))
-    owner = models.ForeignKey(User, related_name="owned_tasks", on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Owner"))
+    creator = models.ForeignKey(
+        User, 
+        related_name="created_tasks", 
+        on_delete=models.CASCADE, 
+        verbose_name=_("Creator")
+    )
+    owner = models.ForeignKey(
+        User, 
+        related_name="owned_tasks", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Owner")
+    )
+
 
     class Meta:
         verbose_name = _("Task")
@@ -101,15 +119,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
-
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
-
+    
 
 class Sprint(models.Model):
     """
@@ -121,10 +131,28 @@ class Sprint(models.Model):
     start_date = models.DateField(verbose_name=_("Start Date"))
     end_date = models.DateField(verbose_name=_("End Date"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
-    creator = models.ForeignKey(User, related_name='created_sprints', on_delete=models.CASCADE, verbose_name=_("Creator"))
-    tasks = models.ManyToManyField('Task', related_name='sprints', blank=True, verbose_name=_("Tasks"))
-
+    updated_at = models.DateTimeField(
+        auto_now=True, 
+        verbose_name=_("Updated At")
+    )
+    creator = models.ForeignKey(
+        User, related_name='created_sprints', 
+        on_delete=models.CASCADE, 
+        verbose_name=_("Creator")
+    )
+    epic = models.ForeignKey(
+        Epic, 
+        related_name="sprints",
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True,
+        verbose_name=_("Sprint")
+    )
+    tasks = models.ManyToManyField(
+        "Task", 
+        related_name="sprints", 
+        blank=True
+    )
     class Meta:
         verbose_name = _("Sprint")
         verbose_name_plural = _("Sprints")
